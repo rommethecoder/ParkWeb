@@ -1,44 +1,47 @@
-# Project Title
+# Senior Project (Unfinished)
 
 Simple overview of use/purpose.
 
-## Description
+## Description (Unfinished)
 
 An in-depth paragraph about your project and overview of use.
 
 ## Getting Started
 
 ### Dependencies
+- Windows 10
+- VS Code
+- Postman
+- Django
+- MySQL
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
-
-### Installing
+### Installing (Unfinished)
 
 * How/where to download your program
 * Any modifications needed to be made to files/folders
 
 ### Executing program
 
-* How to run the program
-* Step-by-step bullets
+* Ensure terminal is in same directory as manage.py (\Django\backend\...)
+* Run the following command
 ```
-code blocks for commands
+python manage.py runserver
 ```
 
-## Help
+## Help (Unfinished)
 
 Any advise for common problems or issues.
 ```
 command to run if program contains helper info
 ```
 
-## Authors
+## Authors (Unfinished)
 
-Contributors names and contact info
+- Terry (Romme) Felton (terrysfelton@gmail.com)
+- Contributors names and contact info
 
 
-## Version History
+## Version History (Unfinished)
 
 * 0.2
     * Various bug fixes and optimizations
@@ -46,8 +49,8 @@ Contributors names and contact info
 * 0.1
     * Initial Release
 
-## License
+## License (Unfinished)
 
 This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
 
-## Acknowledgments
+## Acknowledgments (Unfinished)
