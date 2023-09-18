@@ -9,21 +9,50 @@ An in-depth paragraph about your project and overview of use.
 ## Getting Started
 
 ### Dependencies
-- Windows 10
-- VS Code
+- Pip
+- Python
 - Postman
 - Django
+- Django Rest Framework
+- Django Cors Headers
 - MySQL
+- MySqlClient
+- MySQL Workbench
 
 ### Installing (Unfinished)
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+* Django
+```
+pip install django
+```
 
+* Django Rest Framework
+```
+pip install djangorestframework
+```
+
+* Django Cors Headers
+```
+pip install django-cors-headers
+```
+* MySqlClient
+```
+pip install mysqlclient
+```
 ### Executing program
 
-* Ensure terminal is in same directory as manage.py (\Django\backend\...)
-* Run the following command
+* Ensure terminal is in same directory as manage.py (\Django\...)
+
+* Create a MySql server name "appDB"
+* Run the following command to migrate tables from django to the database
+```
+python manage.py makemigrations
+python manage.py migrate
+```
+
+* Local MySQL server named "apDB" must be running for application to start.
+
+* To start the application run the following command
 ```
 python manage.py runserver
 ```
