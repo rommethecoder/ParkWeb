@@ -11,13 +11,9 @@ An in-depth paragraph about your project and overview of use.
 ### Dependencies
 - Pip
 - Python
-- Postman
 - Django
-- Django Rest Framework
-- Django Cors Headers
-- MySQL
+- MySQL 
 - MySqlClient
-- MySQL Workbench
 
 ### Installing (Unfinished)
 
@@ -26,15 +22,6 @@ An in-depth paragraph about your project and overview of use.
 pip install django
 ```
 
-* Django Rest Framework
-```
-pip install djangorestframework
-```
-
-* Django Cors Headers
-```
-pip install django-cors-headers
-```
 * MySqlClient
 ```
 pip install mysqlclient
@@ -43,14 +30,14 @@ pip install mysqlclient
 
 * Ensure terminal is in same directory as manage.py (\Django\...)
 
-* Create a MySql server name "appDB"
+* <b>Local MySQL server named "<i>appDB</i>" must be running for application to start</b>.
+
 * Run the following command to migrate tables from django to the database
 ```
 python manage.py makemigrations
 python manage.py migrate
 ```
 
-* Local MySQL server named "apDB" must be running for application to start.
 
 * To start the application run the following command
 ```
