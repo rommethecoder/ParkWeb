@@ -14,6 +14,7 @@ An in-depth paragraph about your project and overview of use.
 - Django
 - MySQL 
 - MySqlClient
+- Bootstrap v5
 
 ### Installing (Unfinished)
 
@@ -25,6 +26,11 @@ pip install django
 * MySqlClient
 ```
 pip install mysqlclient
+```
+
+* Bootstrap v5
+```
+pip install django-bootstrap-v5
 ```
 ### Executing program
 

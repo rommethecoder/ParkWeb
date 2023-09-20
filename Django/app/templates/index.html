@@ -1,31 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    {% load static %}
-    {% load bootstrap5 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
-    <link rel="stylesheet" type="text/css" href="{% static '/styles/index.css' %}">
-</head>
-<body>
-    <button class="test">
-        Select
-    </button>
-    <div class="container">
-        <ul class="nav bg-info">
-          <li class="nav-item">
-            <a class="nav-link link-light" href="/">HOME</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link link-light" href="">MEMBERS</a>
-          </li>
-        </ul>
-        {% block content %}
-        {% endblock %}
-      </div>
-    <script src="{% static '/scripts/index.js' %}"></script>
-</body>
-</html>
+{% extends 'master.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% block content %}
+  <nav class="">
+    <ul class="nav bg-dark">
+      <li class="nav-item">
+        <a class="nav-link link-light" href="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link link-light" href="#">Calender</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link link-light" href="#">Calender</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link link-light" href="#">Calender</a>
+      </li>
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+        </li>
+    </ul>
+    </ul>
+  </nav>
+{% endblock %}
