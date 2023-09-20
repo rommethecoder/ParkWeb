@@ -1,0 +1,129 @@
+{
+    "editor.fontSize": 15,
+    "editor.lineHeight": 22,
+    "editor.rulers": [
+        100
+    ],
+    "editor.wordWrapColumn": 100,
+    "files.trimTrailingWhitespace": true,
+    "workbench.preferredDarkColorTheme": "One Dark Pro Darker",
+    "editor.fontFamily": "Fira Code, JetBrains Mono, Menlo, Consolas, DejaVu Sans Mono, monospace",
+    "files.exclude": {
+        "out": true, // set this to true to hide the "out" folder with the compiled JS files
+        "**/*.pyc": true,
+        ".nyc_output": true,
+        "obj": true,
+        "bin": true,
+        "**/__pycache__": true,
+        ".vscode-test": false,
+        ".vscode test": false,
+        "**/.mypy_cache/**": true,
+        "**/.pytest_cache/**": true,
+        "**/.venv/**": true,
+        ".coverage": true,
+        "db.sqlite3": true,
+        "staticfiles": true,
+        "htmlcov": true
+    },
+    "search.exclude": {
+        "out": true, // set this to false to include "out" folder in search results
+        "dist": true,
+        "**/node_modules": true,
+        "coverage": true,
+        "languageServer*/**": true,
+        ".vscode-test": true,
+        ".vscode test": true
+    },
+    "git.allowForcePush": true,
+    "editor.formatOnSave": true,
+    "files.associations": {
+        "*.html": "django-html",
+    },
+    "[python]": {
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true,
+        },
+    },
+    "[html]": {
+        "editor.defaultFormatter": "monosans.djlint"
+    },
+    "[django-html]": {
+        "editor.defaultFormatter": "monosans.djlint"
+    },
+    "[markdown]": {
+        "editor.defaultFormatter": "yzhang.markdown-all-in-one",
+        "editor.formatOnSave": true,
+    },
+    "markdown.extension.preview.autoShowPreviewToSide": true,
+    "markdown.extension.print.theme": "dark",
+    "markdown.extension.toc.slugifyMode": "gitlab",
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true,
+            "source.fixAll": true,
+        }
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+    },
+    "[yaml]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+    },
+    "[ignore]": {
+        "editor.defaultFormatter": "foxundermoon.shell-format"
+    },
+    "[dockerfile]": {
+        "editor.defaultFormatter": "ms-azuretools.vscode-docker",
+        "editor.quickSuggestions": {
+            "strings": true
+        }
+    },
+    "python.linting.enabled": true,
+    "python.linting.pycodestyleEnabled": true,
+    "python.linting.pydocstyleEnabled": true,
+    "python.linting.pydocstyleArgs": [
+        "--line-length=100",
+        "--ignore=D213,D203,D104,D406"
+    ],
+    "python.linting.pycodestyleArgs": [
+        "--line-length=100",
+        "--ignore=E501"
+    ],
+    "python.testing.promptToConfigure": true,
+    "python.formatting.provider": "black",
+    "python.formatting.blackArgs": [
+        "--line-length=100"
+    ],
+    "javascript.preferences.quoteStyle": "single",
+    "prettier.printWidth": 100,
+    "prettier.singleQuote": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "python.languageServer": "Pylance",
+    "typescript.preferences.importModuleSpecifier": "relative",
+    "python.linting.pylamaEnabled": true,
+    "python.linting.pylamaArgs": [
+        "--options=pylama.ini",
+        "--max-line-length=100"
+    ],
+    "python.linting.pylintEnabled": true,
+    "python.linting.pylintArgs": [
+        "--load-plugins=pylint_django",
+        "--rcfile=.pylintrc",
+        "--django-settings-module=django_project.settings",
+    ],
+    "python.analysis.completeFunctionParens": true,
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.autoSearchPaths": true,
+    "autoDocstring.docstringFormat": "numpy",
+    "autoDocstring.customTemplatePath": ".vscode/numpy.mustache",
+    "python.testing.pytestArgs": [
+        "."
+    ],
+    "python.testing.pytestEnabled": true,
+    "python.testing.unittestEnabled": false,
+}
