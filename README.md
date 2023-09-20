@@ -18,9 +18,17 @@ An in-depth paragraph about your project and overview of use.
 
 ### Installing (Unfinished)
 
+* Python
+```
+https://www.python.org/downloads/
+```
+
+From here open the command prompt
+
 * Django
 ```
 pip install django
+pip install django-bootstrap-v5
 ```
 
 * MySqlClient
