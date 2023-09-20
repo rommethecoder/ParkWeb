@@ -28,7 +28,6 @@ From here open the command prompt
 * Django
 ```
 pip install django
-pip install django-bootstrap-v5
 ```
 
 * MySqlClient
