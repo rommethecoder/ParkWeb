@@ -10,6 +10,19 @@
         {% bootstrap_javascript %}
         <link rel="stylesheet" type="text/css" href="{% static '/styles/index.css' %}">
     </head>
+    <header>
+  <h1>Welcome to the Project</h1>
+  <div class="navBar">
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li> <!-- Brings you to the main page -->
+        <li><a href="">Events</a></li> <!-- This can link to a page with all the relevent events -->
+        <li><a href="">Members</a></li> <!-- This can link to a login page maybe -->
+        <li><a href="/about">About</a></li> <!-- This links to the about page -->
+      </ul>
+    </nav>
+  </div>
+</header>
     <body>
 
     {% block content %}
