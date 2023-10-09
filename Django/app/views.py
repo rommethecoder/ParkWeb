@@ -5,3 +5,7 @@ def index(request):
 
 def about(request):
     return render(request, "about.html")
+
+def login(request):
+    isLoggedIn = False
+    return render(request, "index.html", {'isLoggedIn': isLoggedIn})
