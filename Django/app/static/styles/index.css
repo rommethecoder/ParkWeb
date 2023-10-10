@@ -1,3 +1,72 @@
-header {
+/* Color Scheme : https://coolors.co/ff8811-7daa92-b98ea7-3c474b-0acdff */
+
+/* START Master Template CSS */
+.navContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navContainer .navLeft {
+    float: left;
+    width: 33.33vw;
+    text-align: left;
+}
+
+.navContainer .navCenter {
+    margin: 0 auto;
+    width: 33.33vw;
+    text-align: center;
+}
+
+.navContainer .navRight {
+    float: right;
+    width: 33.33vw;
+    text-align: right;
+}
+
+
+.navbar-custom {
+    border: 0;
+    background-color: #7DAA92;
+}
+
+.navLink {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    color: #5F264A;
+    font-weight: bolder;
+}
+
+.navLink:link {
+    text-decoration: none;
+}
+
+.navLink:visited {
+    text-decoration: none;
+}
+
+.navLink:active {
+    text-decoration: underline;
+}
+
+.navLink:hover {
     color: black;
+    text-decoration: underline;
+}
+
+.navLink-right {
+    padding-right: 10px;
+}
+
+.navLink-left {
+    padding-left: 10px;
+}
+
+/*  END Master Template CSS */
+
+
+/* START Home Template CSS */
+.homeBody {
+    background: white;
 }
