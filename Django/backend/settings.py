@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',
-    'bootstrap5'
+    'bootstrap5',
+    'calendarapp'
 ]
 
 MIDDLEWARE = [
@@ -80,7 +81,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'appDB',
         'USER': 'root', # replace with your specific mysql username
-        'PASSWORD': '', # replace with your specific mysql password
+        'PASSWORD': 'root', # replace with your specific mysql password
         'HOST': 'localhost',  # or the hostname where your MySQL server is running
         'PORT': '3306',      # or the port on which your MySQL server is listening
     }

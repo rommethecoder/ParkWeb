@@ -1,0 +1,26 @@
+{% extends 'master.html' %}
+
+{% block content %}
+  <h1>Calendar</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for event in events %}
+        <tr>
+          <td>{{ event.title }}</td>
+          <td>{{ event.description }}</td>
+          <td>{{ event.start_date }}</td>
+          <td>{{ event.end_date }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{% url 'add_event' %}">Add Event</a>
+{% endblock %}
