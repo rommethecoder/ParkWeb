@@ -30,20 +30,16 @@ From here open the command prompt
 * Django
 
 ```
-pip install django
-pip install django-bootstrap-v5
+py -m pip install Django
+py -m pip install django-bootstrap-v5
 ```
 
 * MySqlClient
 
 ```
-pip install mysqlclient
+py -m pip install mysqlclient
 ```
 
-* Bootstrap v5
-
-```
-pip install django-bootstrap-v5
 ```
 
 ### Executing program
