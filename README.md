@@ -40,8 +40,6 @@ py -m pip install django-bootstrap-v5
 py -m pip install mysqlclient
 ```
 
-```
-
 ### Executing program
 
 * Ensure terminal is in same directory as manage.py (\Django\...)
