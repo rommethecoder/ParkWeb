@@ -38,6 +38,7 @@ py -m pip install django-bootstrap-v5
 
 ```
 py -m pip install mysqlclient
+https://dev.mysql.com/downloads/file/?id=520510
 ```
 
 ### Executing program
