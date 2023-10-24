@@ -28,7 +28,7 @@ Available Objects {
         <select id="bookable" name="selectedBooking">
             <option value="" selected="selected">---SELECT---</option>
             {% for area in bookableAreas %}
-                <option value="{{area.areaid}}">{{area.areaname}}</option>
+            <option value="{{area.areaid}}">{{area.areaname}}</option>
             {% endfor %}
         </select>
     </div>
@@ -42,13 +42,58 @@ Available Objects {
         </select>
     </div>
     <div class="eventsBody">
-        <label for="events">Upcoming Events</label>
-        <select id="events" name="events">
-            <option value="" selected="selected">---SELECT---</option>
-            {% for event in events %}
-            <option value="{{event.eventid}}">{{event.eventname}}</option>
-            {% endfor %}
-        </select>
+        <!-- Button to trigger modal -->
+        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#eventsModal">
+            Upcoming Events
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="eventsModal" tabindex="-1" role="dialog" aria-labelledby="eventsModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="eventsModalLabel">Upcoming Events</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Event Name</th>
+                                    <th>Event Date</th>
+                                    <th>Event Type</th>
+                                    <th>Event Category</th>
+                                    <th>Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for event in events %}
+                                <tr>
+                                    <td>{{ event.eventname }}</td>
+                                    <td>{{ event.eventdate }}</td>
+                                    <td>{{ event.eventtype }}</td>
+                                    <td>{{ event.eventcategory }}</td>
+                                    <td>{{ event.description }}</td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="5">No events available.</td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </body>
