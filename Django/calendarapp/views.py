@@ -32,7 +32,7 @@ def add_event(request):
                 'start': event.EventDate.isoformat(),
                 'end': event.EventDate.isoformat(),  # Assuming you want the end time to be the same as the start time
             }
-            return JsonResponse({'status': 'success', 'event': event_data})
+            return redirect('calendar_view')
         else:
             return JsonResponse({'status': 'error', 'errors': form.errors}, status=400)
     else:
