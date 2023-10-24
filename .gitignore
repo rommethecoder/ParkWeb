@@ -135,3 +135,5 @@ GitHub.sublime-settings
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
+.idea/*
+Django/app/migrations/0001_initial.py

@@ -1,0 +1,55 @@
+{% extends 'master.html' %}
+
+{% block title %} Map {% endblock %}
+{% block middleNav %} Girard Park Interactive Map {% endblock %}
+
+
+<!--
+Available Objects {
+    "availabilities",
+    "areas",
+    "bookableAreas",
+    "events"
+}-->
+
+
+{% block content %}
+<body class="mapBody">
+<div id="googleMap">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3448.069212640062!2d-92.02259892284866!3d30.20657197484256!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86249d02fbde460b%3A0xaa454549d42d16a5!2sGirard%20Park!5e0!3m2!1sen!2sus!4v1697507624176!5m2!1sen!2sus"
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+
+
+<div class="infoBody">
+    <div class="bookableBody">
+        <label for="bookable">Bookable Areas</label>
+        <select id="bookable" name="selectedBooking">
+            <option value="" selected="selected">---SELECT---</option>
+            {% for area in bookableAreas %}
+                <option value="{{area.areaid}}">{{area.areaname}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="bookableAreaBody">
+        <label for="allAreas">All Areas</label>
+        <select id="allAreas" name="allAreas">
+            <option value="" selected="selected">---SELECT---</option>
+            {% for area in areas %}
+            <option value="{{area.areaid}}">{{area.areaname}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="eventsBody">
+        <label for="events">Upcoming Events</label>
+        <select id="events" name="events">
+            <option value="" selected="selected">---SELECT---</option>
+            {% for event in events %}
+            <option value="{{event.eventid}}">{{event.eventname}}</option>
+            {% endfor %}
+        </select>
+    </div>
+</div>
+</body>
+{% endblock %}
