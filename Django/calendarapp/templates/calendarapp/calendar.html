@@ -2,25 +2,41 @@
 
 {% block content %}
   <h1>Calendar</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Start Date</th>
-        <th>End Date</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for event in events %}
-        <tr>
-          <td>{{ event.title }}</td>
-          <td>{{ event.description }}</td>
-          <td>{{ event.start_date }}</td>
-          <td>{{ event.end_date }}</td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  <a href="{% url 'add_event' %}">Add Event</a>
+  <div id="calendar"></div>
+  <a href="{% url 'add_event' %}" class="btn btn-primary">Add Event</a>
+{% endblock %}
+
+{% block scripts %}
+  <!-- JavaScript for FullCalendar initialization -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+  var calendarEl = document.getElementById('calendar');
+
+  var calendar = new FullCalendar.Calendar(calendarEl, {
+    // FullCalendar options here
+    events: '/calendar/get_events/',  // URL to retrieve events
+  });
+
+  calendar.render();
+
+  // Handle form submission for adding events
+  $('#event-form').on('submit', function(event) {
+    event.preventDefault();
+    var formData = $(this).serialize();
+
+    $.post('/add_event/', formData, function(response) {
+      if (response.status === 'success') {
+        // Add the new event to FullCalendar
+        calendar.addEvent(response.event);
+
+        // Clear the form
+        $('#event-form')[0].reset();
+      } else {
+        // Handle form validation errors
+        // Display the errors to the user, if needed
+      }
+    });
+  });
+});
+  </script>
 {% endblock %}
