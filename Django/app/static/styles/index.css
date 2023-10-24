@@ -27,7 +27,6 @@
     text-align: right;
 }
 
-
 .navbar-custom {
     border: 0;
     background-color: #CE181E; /* Ragin Cajun Red */
@@ -64,6 +63,13 @@
 .navLink-left {
     padding-left: 10px;
     color: #c1c5c9;
+}
+
+.imgHeader {
+    background-image: url(../images/Park2.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;/*100% 275px;*/
+    height: 150px;
 }
 
 /*  END Master Template CSS */
