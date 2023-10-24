@@ -18,6 +18,7 @@
     margin: 0 auto;
     width: 33.33vw;
     text-align: center;
+    color: #0A0203;
 }
 
 .navContainer .navRight {
@@ -29,7 +30,7 @@
 
 .navbar-custom {
     border: 0;
-    background-color: #7DAA92;
+    background-color: #CE181E; /* Ragin Cajun Red */
 }
 
 .navLink {
@@ -57,10 +58,12 @@
 
 .navLink-right {
     padding-right: 10px;
+    color: #c1c5c9;
 }
 
 .navLink-left {
     padding-left: 10px;
+    color: #c1c5c9;
 }
 
 /*  END Master Template CSS */
