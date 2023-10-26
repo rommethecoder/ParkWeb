@@ -13,8 +13,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- One file includes all the Font Awesome Free icons and utilities -->
-    <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -55,6 +53,30 @@
         </div>
     </div>
 </nav>
+
+<footer class="mapFooter">
+    <div id="googleMap" class="googleMapContainer">
+        <div class="googleMap">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3448.069212640062!2d-92.02259892284866!3d30.20657197484256!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86249d02fbde460b%3A0xaa454549d42d16a5!2sGirard%20Park!5e0!3m2!1sen!2sus!4v1697507624176!5m2!1sen!2sus"
+                    allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="googleMapTextContainer">
+            <div class="text">
+                Address:
+                <b>
+                    <a href="https://www.google.com/maps/place/Girard+Park,+500+Girard+Park+Dr,+Lafayette,+LA+70503/@30.2069001,-92.0198322,18z/data=!4m6!3m5!1s0x86249d02fbde460b:0xaa454549d42d16a5!8m2!3d30.206572!4d-92.020024!16s%2Fg%2F1tlwf_sh">500 Girard Park Drive, Lafayette</a>
+                </b>
+            </div>
+            <div class="text"> Phone:
+                <b>
+                    <a href="tel:337-291-8374">337-291-8374</a>
+                </b>
+            </div>
+        </div>
+    </div>
+
+</footer>
 
 {% block content %}
 {% endblock %}
