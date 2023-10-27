@@ -1,12 +1,18 @@
 /* Color Scheme : https://coolors.co/ff8811-7daa92-b98ea7-3c474b-0acdff */
 
 /* START Master Template CSS */
-.navContainer {
+footer.mapFooter {
+    position: fixed;
+    bottom: 0;
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 30vh;
+    background: #212529;
 }
+
+.googleMap iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
 
 .navContainer .navLeft {
     float: left;
@@ -21,41 +27,54 @@
     color: #0A0203;
 }
 
-.navContainer .navRight {
+.googleMapContainer {
+    position: relative;
     float: right;
-    width: 33.33vw;
-    text-align: right;
+    height: 100%;
+    width: 30%;
 }
+
+
+.googleMap {
+    padding: 3vh 3vh 0 3vh;
+    height: 80%;
 
 .navbar-custom {
     border: 0;
     background-color: #CE181E; /* Ragin Cajun Red */
 }
 
-.navLink {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    color: #5F264A;
-    font-weight: bolder;
+.googleMapTextContainer {
+    position: relative;
+    float: none;
+    padding: 1vh 3vh 0 3vh;
+    color: #f2f2f2;
+    height: 20%;
+    font-family: 'Courier New', monospace;
+}
+.googleMapTextContainer a:hover {
+    color: #f2f2f2;
 }
 
-.navLink:link {
-    text-decoration: none;
+.googleMapTextContainer .text {
+    position: relative;
+    text-align: left;
 }
+/*  END Master Template CSS */
 
-.navLink:visited {
-    text-decoration: none;
+
+/* START Home Template CSS */
+.homeBody {
+    background: #f2f2f2;
 }
+/* END Home Template CSS */
 
-.navLink:active {
-    text-decoration: underline;
-}
 
-.navLink:hover {
-    color: black;
-    text-decoration: underline;
-}
+/* START Map Template CSS */
+.mapBody {
+    background: #f2f2f2;
 
-.navLink-right {
+ .navLink-right {
     padding-right: 10px;
     color: #c1c5c9;
 }
@@ -71,11 +90,4 @@
     background-size: 100% 100%;/*100% 275px;*/
     height: 150px;
 }
-
-/*  END Master Template CSS */
-
-
-/* START Home Template CSS */
-.homeBody {
-    background: white;
-}
+/* END Map Template CSS */

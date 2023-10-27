@@ -1,9 +1,9 @@
-from django.shortcuts import render, HttpResponse, redirect
-from django.contrib.auth.forms import UserCreationForm
-from django import forms
-from django.contrib.auth.models import User
-from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
+from django.shortcuts import render, redirect
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
+from app.models import *
 
 
 def homePage(request):
@@ -12,7 +12,33 @@ def homePage(request):
 
 
 def about(request):
-    return render(request, "about.html")
+    context = {}
+    return render(request, "about.html", context)
+
+
+def mapPage(request):
+    area = Area.objects.all()
+    event = Event.objects.all()
+    booking = Booking.objects.all()
+
+    bookableArea = Area.objects.raw(
+        """
+            SELECT * FROM area
+            WHERE area.id NOT IN (
+                SELECT booking.area_id
+                FROM booking
+            )
+        """
+    )
+
+    context = {
+        "areas": area,
+        "events": event,
+        "bookings": booking,
+        "bookableAreas": bookableArea,
+    }
+
+    return render(request, "map.html", context)
 
 
 def loginPage(request):
