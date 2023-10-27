@@ -135,6 +135,7 @@ GitHub.sublime-settings
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
+<<<<<<< Updated upstream
 .idea/*
 Django/app/migrations/0001_initial.py
 Django/app/migrations/0002_rename_areaid_booking_area_and_more.py
@@ -143,3 +144,7 @@ Django/app/migrations/__pycache__/__init__.cpython-39.pyc
 Django/app/migrations/0005_rename_end_date_time_booking_end_time_and_more.py
 Django/app/migrations/0004_rename_enddatetime_booking_end_date_time_and_more.py
 Django/app/migrations/0003_rename_capacity_area_capacity_and_more.py
+=======
+.idea/dataSources.xml
+.idea/sqldialects.xml
+>>>>>>> Stashed changes
