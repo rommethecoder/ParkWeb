@@ -45,7 +45,7 @@
                     {% endif %}
                 </li>
                 <li class="nav-item">
-                {% if user.is_superuser %}
+                {% if user.is_staff %}
                 <a class="nav-link" href="/admin/" target="_blank"> Admin Panel </a>
                 {% endif %}
                 </li>

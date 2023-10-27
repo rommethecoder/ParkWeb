@@ -1,10 +1,9 @@
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
-
-from app.models import Availability, Bookablearea, Booking, Event
+from app.models import *
 
 
 def homePage(request):
@@ -18,23 +17,27 @@ def about(request):
 
 
 def mapPage(request):
-    availability = Availability.objects.all()
-    area = Bookablearea.objects.all()
-    bookable = Bookablearea.objects.raw(
+    area = Area.objects.all()
+    event = Event.objects.all()
+    booking = Booking.objects.all()
+
+    bookableArea = Area.objects.raw(
         """
-        SELECT * FROM bookablearea
-        WHERE AreaID NOT IN (
-            SELECT AreaID FROM booking
+            SELECT * FROM area
+            WHERE area.id NOT IN (
+                SELECT booking.area_id
+                FROM booking
             )
         """
     )
-    event = Event.objects.all()
+
     context = {
-        "availabilities": availability,
         "areas": area,
-        "bookableAreas": bookable,
-        "events": event
+        "events": event,
+        "bookings": booking,
+        "bookableAreas": bookableArea,
     }
+
     return render(request, "map.html", context)
 
 
