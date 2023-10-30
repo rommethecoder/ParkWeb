@@ -68,9 +68,23 @@ footer.mapFooter {
 /* START Home Template CSS */
 .homeBody {
     background: #f2f2f2;
+    background-image: url(../images/Park3.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 /* END Home Template CSS */
 
+/* START About Template CSS */
+.aboutBody {
+    background-color: #3C474B;
+    color: white;
+    font: 24pt;
+}
+.funFacts {
+    background-color: #0ACDFF;
+    color: black;
+}
+/* END About Template CSS */
 
 /* START Map Template CSS */
 .mapBody {
@@ -85,12 +99,5 @@ footer.mapFooter {
 .navLink-left {
     padding-left: 10px;
     color: #c1c5c9;
-}
-
-.imgHeader {
-    background-image: url(../images/Park2.jpg);
-    background-repeat: no-repeat;
-    background-size: 100% 100%;/*100% 275px;*/
-    height: 150px;
 }
 /* END Map Template CSS */
