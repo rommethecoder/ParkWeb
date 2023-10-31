@@ -9,6 +9,7 @@ urlpatterns = [
     path("login/", views.loginPage, name="login"),
     path("register/", views.registerPage, name="register"),
     path("logout/", views.logoutUser, name="logout"),
+    path('create_event_and_booking/', views.create_event_and_booking, name='create_event_and_booking'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
