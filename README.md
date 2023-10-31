@@ -9,16 +9,18 @@ An in-depth paragraph about your project and overview of use.
 ## Getting Started
 
 ### Dependencies
+
 - Pip
 - Python
 - Django
-- MySQL 
+- MySQL
 - MySqlClient
 - Bootstrap v5
 
 ### Installing (Unfinished)
 
 * Python
+
 ```
 https://www.python.org/downloads/
 ```
@@ -26,20 +28,19 @@ https://www.python.org/downloads/
 From here open the command prompt
 
 * Django
+
 ```
-pip install django
-pip install django-bootstrap-v5
+py -m pip install Django
+py -m pip install django-bootstrap-v5
 ```
 
 * MySqlClient
+
 ```
-pip install mysqlclient
+py -m pip install mysqlclient
+https://dev.mysql.com/downloads/file/?id=520510
 ```
 
-* Bootstrap v5
-```
-pip install django-bootstrap-v5
-```
 ### Executing program
 
 * Ensure terminal is in same directory as manage.py (\Django\...)
@@ -47,13 +48,14 @@ pip install django-bootstrap-v5
 * <b>Local MySQL server named "<i>appDB</i>" must be running for application to start</b>.
 
 * Run the following command to migrate tables from django to the database
+
 ```
 python manage.py makemigrations
 python manage.py migrate
 ```
 
-
 * To start the application run the following command
+
 ```
 python manage.py runserver
 ```
@@ -61,6 +63,7 @@ python manage.py runserver
 ## Help (Unfinished)
 
 Any advise for common problems or issues.
+
 ```
 command to run if program contains helper info
 ```
@@ -69,7 +72,6 @@ command to run if program contains helper info
 
 - Terry (Romme) Felton (terrysfelton@gmail.com)
 - Contributors names and contact info
-
 
 ## Version History (Unfinished)
 

@@ -1,55 +1,103 @@
-.test {
-    background-color: rebeccapurple;
+/* Color Scheme : https://coolors.co/ff8811-7daa92-b98ea7-3c474b-0acdff */
+
+/* START Master Template CSS */
+footer.mapFooter {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 30vh;
+    background: #212529;
 }
 
-body {
-    background-image: url(/static/images/background.png);
-	font-size: 8pt;
+.googleMap iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
 }
 
-header {
-    background-color: rgb(133, 28, 28);
-    color: rgb(255, 255, 255);
+.navContainer .navLeft {
+    float: left;
+    width: 33.33vw;
+    text-align: left;
+}
+
+.navContainer .navCenter {
+    margin: 0 auto;
+    width: 33.33vw;
     text-align: center;
-    padding: 1rem 0;
+    color: #0A0203;
 }
 
-header h1 {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
+.googleMapContainer {
+    position: relative;
+    float: right;
+    height: 100%;
+    width: 30%;
 }
 
-.navBar { /*The Navigation Bar CSS if we add more elements change the width*/
-    width: 50%;
-    margin: auto;
+
+.googleMap {
+    padding: 3vh 3vh 0 3vh;
+    height: 80%;
 }
 
-nav {
-    background-color: #333; /* Navigation Bar background color */
-    border: 5px solid rebeccapurple;
+.navbar-custom {
+    border: 0;
+    background-color: #CE181E; /* Ragin Cajun Red */
 }
 
-nav ul {
-    list-style-type: none;
-    padding: 0;
-    display: flex;
-    justify-content: center;
+.googleMapTextContainer {
+    position: relative;
+    float: none;
+    padding: 1vh 3vh 0 3vh;
+    color: #f2f2f2;
+    height: 20%;
+    font-family: 'Courier New', monospace;
+}
+.googleMapTextContainer a:hover {
+    color: #f2f2f2;
 }
 
-nav li {
-    display: inline;
-    margin: 0 20px;
-    margin-right: 20px;
+.googleMapTextContainer .text {
+    position: relative;
+    text-align: left;
+}
+/*  END Master Template CSS */
+
+
+/* START Home Template CSS */
+.homeBody {
+    background: #f2f2f2;
+    background-image: url(../images/Park3.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+/* END Home Template CSS */
+
+/* START About Template CSS */
+.aboutBody {
+    background-color: #3C474B;
+    color: white;
+    font: 24pt;
+}
+.funFacts {
+    background-color: #0ACDFF;
+    color: black;
+}
+/* END About Template CSS */
+
+/* START Map Template CSS */
+.mapBody {
+    background: #f2f2f2;
 }
 
-nav a {
-    text-decoration: none;
-    color: #fff;
-    font-weight: bold;
-    font-size: 20px;
-    transition: color 0.3s;
+ .navLink-right {
+    padding-right: 10px;
+    color: #c1c5c9;
 }
 
-nav a:hover {
-    color: #ff6600; /* Changes the text color when you hover */
+.navLink-left {
+    padding-left: 10px;
+    color: #c1c5c9;
 }
+/* END Map Template CSS */
