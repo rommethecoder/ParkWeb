@@ -13,6 +13,7 @@ def calendar_view(request):
             'title': event.EventName,  # Use the correct field name from the model
             'start': event.EventDate.isoformat(),
             'end': event.EventDate.isoformat(),  # Assuming you want the end time to be the same as the start time
+            'description': event.Description, 
         })
 
     context = {
@@ -31,6 +32,7 @@ def add_event(request):
                 'title': event.EventName,
                 'start': event.EventDate.isoformat(),
                 'end': event.EventDate.isoformat(),  # Assuming you want the end time to be the same as the start time
+                'description': event.Description,
             }
             return redirect('calendar_view')
         else:
@@ -49,6 +51,7 @@ def get_events(request):
             'title': event.EventName,
             'start': event.EventDate.isoformat(),
             'end': event.EventDate.isoformat(),
+            'description': event.Description,
         })
 
     return JsonResponse(event_data, safe=False)

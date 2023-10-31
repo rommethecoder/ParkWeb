@@ -2,23 +2,14 @@
 
 {% block content %}
   <h1>Calendar</h1>
-  <div id="calendar"></div>
   <a href="{% url 'add_event' %}" class="btn btn-primary">Add Event</a>
+  <div id="calendar" style="background-color: #f0f0f0"></div>
 {% endblock %}
 
 {% block scripts %}
   <!-- JavaScript for FullCalendar initialization -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-  var calendarEl = document.getElementById('calendar');
-
-  var calendar = new FullCalendar.Calendar(calendarEl, {
-    // FullCalendar options here
-    events: '/calendar/get_events/',  // URL to retrieve events
-  });
-
-  calendar.render();
-
   // Handle form submission for adding events
   $('#event-form').on('submit', function(event) {
     event.preventDefault();
