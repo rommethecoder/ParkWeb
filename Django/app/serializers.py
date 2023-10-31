@@ -1,7 +1,8 @@
 from rest_framework import serializers
 from .models import Event
 
+
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = ('id', 'title', 'description', 'start_date', 'end_date')
+        fields = ('id', 'name', 'date', 'is_public', 'category', 'description')

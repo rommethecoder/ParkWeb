@@ -6,6 +6,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from app.models import *
 from datetime import datetime
+import json
+from django import forms
+from django.forms import DateTimeInput
 
 
 def homePage(request):
@@ -139,3 +142,72 @@ class CreateUserForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
+
+
+class EventForm(forms.ModelForm):
+    class Meta:
+        model = Event
+        fields = ['name', 'date', 'is_public', 'category', 'description']
+
+    # Add a DateTimeInput widget for the EventDate field
+    date = forms.DateTimeField(
+        widget=DateTimeInput(attrs={'type': 'datetime-local'}),
+        input_formats=['%Y-%m-%dT%H:%M'],
+        help_text='Format: YYYY-MM-DD HH:MM',
+    )
+
+
+def calendar_view(request):
+    events = Event.objects.all()
+
+    event_data = []
+    for event in events:
+        event_data.append({
+            'title': event.name,  # Use the correct field name from the model
+            'start': event.date.isoformat(),
+            'end': event.date.isoformat(),  # Assuming you want the end time to be the same as the start time
+            'description': event.description,
+        })
+
+    context = {
+        'events_json': json.dumps(event_data),
+    }
+
+    return render(request, 'calendar.html', context)
+
+
+def add_event(request):
+    if request.method == 'POST':
+        form = EventForm(request.POST)
+        if form.is_valid():
+            event = form.save()  # Save the event to the database
+            event_data = {  # Use the correct field name for the event ID
+                'name': event.name,
+                'date': event.date.isoformat(),
+                'is_public': event.is_public,
+                'category': event.category,
+                'description': event.description,
+            }
+            return redirect('calendar_view')
+        else:
+            return JsonResponse({'status': 'error', 'errors': form.errors}, status=400)
+    else:
+        form = EventForm()
+    return render(request, 'add_event.html', {'form': form})
+
+
+def get_events(request):
+    events = Event.objects.all()
+    event_data = []
+
+    for event in events:
+        event_data.append({
+            'id': event.id,
+            'name': event.name,
+            'date': event.date,
+            'is_public': event.date.isoformat(),
+            'category': event.category,
+            'description': event.description,
+        })
+
+    return JsonResponse(event_data, safe=False)
