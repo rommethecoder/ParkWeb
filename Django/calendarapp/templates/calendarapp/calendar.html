@@ -1,0 +1,33 @@
+{% extends 'master.html' %}
+
+{% block content %}
+  <h1>Calendar</h1>
+  <a href="{% url 'add_event' %}" class="btn btn-primary">Add Event</a>
+  <div id="calendar" style="background-color: #f0f0f0"></div>
+{% endblock %}
+
+{% block scripts %}
+  <!-- JavaScript for FullCalendar initialization -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+  // Handle form submission for adding events
+  $('#event-form').on('submit', function(event) {
+    event.preventDefault();
+    var formData = $(this).serialize();
+
+    $.post('/add_event/', formData, function(response) {
+      if (response.status === 'success') {
+        // Add the new event to FullCalendar
+        calendar.addEvent(response.event);
+
+        // Clear the form
+        $('#event-form')[0].reset();
+      } else {
+        // Handle form validation errors
+        // Display the errors to the user, if needed
+      }
+    });
+  });
+});
+  </script>
+{% endblock %}
