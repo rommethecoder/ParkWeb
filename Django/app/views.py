@@ -1,6 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
@@ -83,7 +84,6 @@ def registerPage(request):
 
     context = {'form': form}
     return render(request, "register.html", context)
-
 
 def create_event_and_booking(request):
     if request.method == 'POST':
@@ -175,14 +175,14 @@ def calendar_view(request):
 
     return render(request, 'calendar.html', context)
 
-
+@login_required(login_url='login')
 def add_event(request):
     if request.method == 'POST':
         form = EventForm(request.POST)
         if form.is_valid():
             event = form.save()  # Save the event to the database
             event_data = {  # Use the correct field name for the event ID
-                'name': event.name,
+                'title': event.name,
                 'date': event.date.isoformat(),
                 'is_public': event.is_public,
                 'category': event.category,
@@ -201,11 +201,14 @@ def get_events(request):
     event_data = []
 
     for event in events:
+        if event.is_public:
+            event_title = event.name;
+        else:
+            event_title = "Private Event"
         event_data.append({
             'id': event.id,
-            'name': event.name,
+            'title': event_title,
             'date': event.date,
-            'is_public': event.date.isoformat(),
             'category': event.category,
             'description': event.description,
         })
