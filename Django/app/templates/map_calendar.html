@@ -1,7 +1,7 @@
 {% extends 'master.html' %}
 
-{% block title %} Map {% endblock %}
-{% block middleNav %} Girard Park Interactive Map {% endblock %}
+{% block title %} Map_Calendar {% endblock %}
+{% block middleNav %} Interactive Map / Calendar {% endblock %}
 
 
 <!--
@@ -16,40 +16,24 @@ Available Objects {
 
 {% block content %}
 {% load static %}
-<body class="">
-<div class="interactiveMapContainer">
-    <div class="interactiveMap">
-        <div class="mapCenterContainer" id="map-container">
-            <!--            <img class="girardParkMap" src="{% static '/images/map.svg' %}" alt="Girard Park Map"/>-->
-            <iframe class="girardParkMap" id="map-frame" src="{% static '/images/map1.svg' %}"></iframe>
-            <button class="zoom-btn" id="zoom-in">Zoom In</button>
-            <button class="zoom-btn" id="zoom-out">Zoom Out</button>
+<body class="mapPageBody">
+<div class="firstHalfContainer">
+    <div class="backgroundBubble bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
+        <div class="leftSide">
+            <div class="map">
+                <iframe class="girardParkMap" id="map-frame" src="{% static '/images/map1.svg' %}"></iframe>
+                <div class="btn-group">
+                    <button class="zoom-btn btn btn-outline-primary custom-btn" id="zoom-in">Zoom In</button>
+                    <button class="zoom-btn btn btn-outline-primary custom-btn" id="zoom-out">Zoom Out</button>
+                </div>
+
+            </div>
         </div>
-    </div>
-    <div class="bookingInfo">
-        <div class="bookingInfoCenterContainer">
+        <div class="rightSide">
             <div class="infoBody">
-                <!--                <div class="bookableBody">-->
-                <!--                    <label for="bookable">Bookable Areas</label>-->
-                <!--                    <select id="bookable" name="selectedBooking">-->
-                <!--                        <option value="" selected="selected">-&#45;&#45;SELECT-&#45;&#45;</option>-->
-                <!--                        {% for area in bookableAreas %}-->
-                <!--                        <option value="{{area.AreaId}}">{{area.name}}</option>-->
-                <!--                        {% endfor %}-->
-                <!--                    </select>-->
-                <!--                </div>-->
-                <!--                <div class="bookableAreaBody">-->
-                <!--                    <label for="area">All Areas</label>-->
-                <!--                    <select id="area" name="area">-->
-                <!--                        <option value="" selected="selected">-&#45;&#45;SELECT-&#45;&#45;</option>-->
-                <!--                        {% for area in areas %}-->
-                <!--                        <option value="{{area.AreaId}}">{{area.name}}</option>-->
-                <!--                        {% endfor %}-->
-                <!--                    </select>-->
-                <!--                </div>-->
                 <div class="eventsBody">
                     <!-- Button to trigger modal -->
-                    <button type="button" class="btn btn-outline-primary" data-toggle="modal"
+                    <button type="button" class="btn btn-outline-primary custom-btn" data-toggle="modal"
                             data-target="#eventsModal">
                         Upcoming Events
                     </button>
@@ -121,7 +105,7 @@ Available Objects {
                 </div>
                 <div class="bookingsBody">
                     <!-- Button to trigger modal -->
-                    <button type="button" class="btn btn-outline-primary" data-toggle="modal"
+                    <button type="button" class="btn btn-outline-primary custom-btn" data-toggle="modal"
                             data-target="#bookingsModal">
                         Upcoming Bookings
                     </button>
@@ -205,7 +189,7 @@ Available Objects {
                 {% if request.user.is_authenticated %}
                 <div class="createBookingDiv">
                     <!-- Button to trigger modal -->
-                    <button type="button" class="btn btn-outline-primary" data-toggle="modal"
+                    <button type="button" class="btn btn-outline-primary custom-btn" data-toggle="modal"
                             data-target="#bookingModal">
                         Create Booking
                     </button>
@@ -291,125 +275,167 @@ Available Objects {
             </div>
         </div>
     </div>
-    <div>
-    </div> <!-- Remove Later -->
-    <script>
+</div>
+<div class="secondHalfContainer">
+    <div class="backgroundBubble bg-light rounded-3 py-5 px-4 px-md-5 mb-5" >
+        <div class="leftSide">
+            <div class="calendar bg-info rounded-3 py-5 px-4 px-md-5 mb-5">
+                <div id="calendar"></div>
+            </div>
+        </div>
+        <div class="rightSide">
+            <button class="btn btn-outline-primary custom-btn"> Test </button>
+        </div>
+    </div>
+</div>
 
-        $(document).ready(function () {
+<!-- Zoom In/Out Functionality -->
+<script>
 
-            const mapFrame = $("#map-frame")[0];
-            let scale = 1;
+    $(document).ready(function () {
 
-            // Function to update zoom level
-            function updateZoom() {
-                $(mapFrame.contentDocument.documentElement).css("transform", `scale(${scale})`);
-            }
+        const mapFrame = $("#map-frame")[0];
+        let scale = 1;
 
-            // Zoom In button click event
-            $("#zoom-in").on("click", function () {
-                scale += 0.1;
-                updateZoom();
-            });
+        // Function to update zoom level
+        function updateZoom() {
+            $(mapFrame.contentDocument.documentElement).css("transform", `scale(${scale})`);
+        }
 
-            // Zoom Out button click event
-            $("#zoom-out").on("click", function () {
-                scale = Math.max(0.5, scale - 0.1);
-                updateZoom();
-            });
+        // Zoom In button click event
+        $("#zoom-in").on("click", function () {
+            scale += 0.1;
+            updateZoom();
         });
 
-    </script>
-    <!-- JavaScript to update time options based on event date -->
-    <script>
-        // JavaScript to validate start and end times (optional)
-        const startTimeInput = document.getElementById('startTime');
-        const endTimeInput = document.getElementById('endTime');
+        // Zoom Out button click event
+        $("#zoom-out").on("click", function () {
+            scale = Math.max(0.5, scale - 0.1);
+            updateZoom();
+        });
+    });
+</script>
 
-        // Event listener for form submission
-        document.getElementById('bookingForm').addEventListener('submit', function (event) {
-            // Get selected event date, start time, and end time
-            const selectedDate = document.getElementById('eventDate').value;
-            const startTime = startTimeInput.value;
-            const endTime = endTimeInput.value;
+<!-- JavaScript to update time options based on event date -->
+<script>
+    // JavaScript to validate start and end times (optional)
+    const startTimeInput = document.getElementById('startTime');
+    const endTimeInput = document.getElementById('endTime');
 
-            // Validate start time and end time (if needed)
-            if (selectedDate && startTime && endTime) {
-                const selectedDateTime = new Date(`${selectedDate}T${startTime}`);
-                const endDateTime = new Date(`${selectedDate}T${endTime}`);
+    // Event listener for form submission
+    document.getElementById('bookingForm').addEventListener('submit', function (event) {
+        // Get selected event date, start time, and end time
+        const selectedDate = document.getElementById('eventDate').value;
+        const startTime = startTimeInput.value;
+        const endTime = endTimeInput.value;
 
-                if (selectedDateTime >= endDateTime) {
-                    event.preventDefault();
-                    alert('End time must be later than start time.');
-                    return false;
+        // Validate start time and end time (if needed)
+        if (selectedDate && startTime && endTime) {
+            const selectedDateTime = new Date(`${selectedDate}T${startTime}`);
+            const endDateTime = new Date(`${selectedDate}T${endTime}`);
+
+            if (selectedDateTime >= endDateTime) {
+                event.preventDefault();
+                alert('End time must be later than start time.');
+                return false;
+            }
+        }
+    });
+</script>
+
+<!-- Calendar Scripts -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+        var eventDetailsBox = document.getElementById('event-details');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            // Parameters
+            schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
+            initialView: 'dayGridMonth',
+            events: '/calendar/get_events/',
+            height: 525,
+        });
+        calendar.render();
+
+        $('#event-form').on('submit', function (event) {
+            event.preventDefault();
+            var formData = $(this).serialize();
+
+            $.post('/add_event/', formData, function (response) {
+                if (response.status === 'success') {
+                    // Add the new event to FullCalendar
+                    calendar.addEvent(response.event);
+
+                    // Clear the form
+                    $('#event-form')[0].reset();
+                } else {
+                    // Handle form validation errors
+                    // Display the errors to the user, if needed
                 }
-            }
+            });
         });
-    </script>
-    <style>
-        body {
-            background-color: #f2f2f2;
-        }
+    });
+</script>
 
-        .mapCenterContainer {
-            position: relative;
-            border: 2px solid #000;
-            top: 15%;
-            left: 15%;
-            width: 80%;
-            height: 80%;
-        }
 
-        .girardParkMap {
-            height: 100%;
-            width: 100%;
-            position: relative;
-        }
+<!-- Green (#009B4D), tangerine yellow (#FFCC00), ivory (#FAF5E9) -->
+<style>
+    .mapPageBody {
+        background-color: #f2f2f2;
+        height: 100vh;
+    }
 
-        .interactiveMapContainer {
-            /*background-color: yellow;*/
-            height: 50vh;
+    .custom-btn {
+        color: #009B4D;
+        border-color: #009B4D;
+    }
+
+    .girardParkMap {
+        height: 100%;
+        width: 100%;
+        position: relative;
+    }
+
+    .firstHalfContainer {
+        height: 60vh;
+        width: 100%;
+        display: inline-flex;
+        margin: 0;
+        padding: 0;
+    }
+    .secondHalfContainer {
+            height: 75vh;
             width: 100%;
             display: inline-flex;
             margin: 0;
             padding: 0;
         }
 
-        .interactiveMap {
-            position: relative;
-            /*background-color: red;*/
-            height: 100%;
-            width: 100%;
-            margin: 0;
-            padding: 0;
-        }
+    .leftSide {
+        height: inherit;
+        width: 70%;
+    }
+    .rightSide {
+        height: inherit;
+        width: 30%;
+    }
 
-        .bookingInfo {
-            position: relative;
-            /*background-color: green;*/
-            display: flex;
-            height: 100%;
-            width: 50%;
-            margin: 0;
-            padding: 0;
-        }
+    .backgroundBubble {
+        height: 85%;
+        width: 85%;
+        margin: auto;
+        display: flex;
+    }
 
-        .bookingInfoCenterContainer {
-            position: relative;
-            /*background-color: black;*/
-            top: 15%;
-            left: 0;
-            width: 70%;
-            height: 70%;
-            display: flex;
-            flex-wrap: wrap;
-            align-content: flex-end;
-        }
+    .map {
+        height: 100%;
+    }
+    .calendar {
+        height: 100%;
+    }
 
-        .createBookingDiv {
 
-        }
-
-    </style>
+</style>
 </body>
 
 {% endblock %}

@@ -1,103 +1,13 @@
 /* Color Scheme : https://coolors.co/ff8811-7daa92-b98ea7-3c474b-0acdff */
 
 /* START Master Template CSS */
-footer.mapFooter {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: 30vh;
-    background: #212529;
-}
-
-.googleMap iframe {
-    width: 100%;
-    height: 100%;
-    border: 0;
-}
-
-.navContainer .navLeft {
-    float: left;
-    width: 33.33vw;
-    text-align: left;
-}
-
-.navContainer .navCenter {
-    margin: 0 auto;
-    width: 33.33vw;
-    text-align: center;
-    color: #0A0203;
-}
-
-.googleMapContainer {
-    position: relative;
-    float: right;
-    height: 100%;
-    width: 30%;
-}
-
-
-.googleMap {
-    padding: 3vh 3vh 0 3vh;
-    height: 80%;
-}
-
-.navbar-custom {
-    border: 0;
-    background-color: #CE181E; /* Ragin Cajun Red */
-}
-
-.googleMapTextContainer {
-    position: relative;
-    float: none;
-    padding: 1vh 3vh 0 3vh;
-    color: #f2f2f2;
-    height: 20%;
-    font-family: 'Courier New', monospace;
-}
-.googleMapTextContainer a:hover {
-    color: #f2f2f2;
-}
-
-.googleMapTextContainer .text {
-    position: relative;
-    text-align: left;
-}
 /*  END Master Template CSS */
 
-
 /* START Home Template CSS */
-.homeBody {
-    background: #f2f2f2;
-    background-image: url(../images/Park3.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
 /* END Home Template CSS */
 
 /* START About Template CSS */
-.aboutBody {
-    background-color: #3C474B;
-    color: white;
-    font: 24pt;
-}
-.funFacts {
-    background-color: #0ACDFF;
-    color: black;
-}
 /* END About Template CSS */
 
 /* START Map Template CSS */
-.mapBody {
-    background: #f2f2f2;
-}
-
- .navLink-right {
-    padding-right: 10px;
-    color: #c1c5c9;
-}
-
-.navLink-left {
-    padding-left: 10px;
-    color: #c1c5c9;
-}
 /* END Map Template CSS */

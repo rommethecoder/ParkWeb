@@ -22,7 +22,7 @@ def about(request):
     return render(request, "about.html", context)
 
 
-def mapPage(request):
+def map_calendarPage(request):
     area = Area.objects.all()
     event = Event.objects.all()
     booking = Booking.objects.all()
@@ -37,15 +37,27 @@ def mapPage(request):
         """
     )
 
+    # # For Map Items
+    # eventsForMap = Event.objects.all()
+    # event_data = []
+    # for event in eventsForMap:
+    #     event_data.append({
+    #         'title': event.name,  # Use the correct field name from the model
+    #         'start': event.date.isoformat(),
+    #         'end': event.date.isoformat(),  # Assuming you want the end time to be the same as the start time
+    #         'description': event.description,
+    #     })
+
     context = {
         "areas": area,
         "events": event,
         "bookings": booking,
         "bookableAreas": bookableArea,
-        "current_date": datetime.now()
+        "current_date": datetime.now(),
+        # 'events_json': json.dumps(event_data)
     }
 
-    return render(request, "map.html", context)
+    return render(request, "map_calendar.html", context)
 
 
 def loginPage(request):
@@ -84,6 +96,7 @@ def registerPage(request):
 
     context = {'form': form}
     return render(request, "register.html", context)
+
 
 def create_event_and_booking(request):
     if request.method == 'POST':
@@ -157,52 +170,13 @@ class EventForm(forms.ModelForm):
     )
 
 
-def calendar_view(request):
-    events = Event.objects.all()
-
-    event_data = []
-    for event in events:
-        event_data.append({
-            'title': event.name,  # Use the correct field name from the model
-            'start': event.date.isoformat(),
-            'end': event.date.isoformat(),  # Assuming you want the end time to be the same as the start time
-            'description': event.description,
-        })
-
-    context = {
-        'events_json': json.dumps(event_data),
-    }
-
-    return render(request, 'calendar.html', context)
-
-@login_required(login_url='login')
-def add_event(request):
-    if request.method == 'POST':
-        form = EventForm(request.POST)
-        if form.is_valid():
-            event = form.save()  # Save the event to the database
-            event_data = {  # Use the correct field name for the event ID
-                'title': event.name,
-                'date': event.date.isoformat(),
-                'is_public': event.is_public,
-                'category': event.category,
-                'description': event.description,
-            }
-            return redirect('calendar_view')
-        else:
-            return JsonResponse({'status': 'error', 'errors': form.errors}, status=400)
-    else:
-        form = EventForm()
-    return render(request, 'add_event.html', {'form': form})
-
-
 def get_events(request):
     events = Event.objects.all()
     event_data = []
 
     for event in events:
         if event.is_public:
-            event_title = event.name;
+            event_title = event.name
         else:
             event_title = "Private Event"
         event_data.append({

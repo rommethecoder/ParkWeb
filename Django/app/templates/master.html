@@ -29,10 +29,8 @@
                 class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="/about/">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="/calendar/">Calendar</a></li>
-                <li class="nav-item"><a class="nav-link" href="/map/">Interactive Map</a></li>
+                <li class="nav-item"><a class="nav-link" aria-current="page" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/map_calendar/">Map/Calendar</a></li>
                 <li class="nav-item">
                     {% if request.user.is_authenticated %}
                     <a class="nav-link" href="/logout/">
@@ -46,47 +44,138 @@
                     {% endif %}
                 </li>
                 <li class="nav-item">
-                {% if user.is_staff %}
-                <a class="nav-link" href="/admin/" target="_blank"> Admin Panel </a>
-                {% endif %}
+                    {% if user.is_staff %}
+                    <a class="nav-link" href="/admin/" target="_blank"> Admin Panel </a>
+                    {% endif %}
                 </li>
             </ul>
         </div>
     </div>
 </nav>
 
+{% block content %}
 
-<footer class="mapFooter">
-    <div id="googleMap" class="googleMapContainer">
-        <div class="googleMap">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3448.069212640062!2d-92.02259892284866!3d30.20657197484256!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86249d02fbde460b%3A0xaa454549d42d16a5!2sGirard%20Park!5e0!3m2!1sen!2sus!4v1697507624176!5m2!1sen!2sus"
-                    allowfullscreen="" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-        <div class="googleMapTextContainer">
-            <div class="text">
-                Address:
-                <b>
-                    <a href="https://www.google.com/maps/place/Girard+Park,+500+Girard+Park+Dr,+Lafayette,+LA+70503/@30.2069001,-92.0198322,18z/data=!4m6!3m5!1s0x86249d02fbde460b:0xaa454549d42d16a5!8m2!3d30.206572!4d-92.020024!16s%2Fg%2F1tlwf_sh"
-                     target="_blank">
-                        500 Girard Park Drive, Lafayette</a>
-                </b>
+{% endblock %}
+
+<!--<footer class="bg-dark py-4 mt-auto">-->
+<!--    <div class="container px-5">-->
+<!--        <div class="row align-items-center justify-content-between flex-column flex-sm-row">-->
+<!--            <div id="googleMap" class="googleMapContainer">-->
+<!--                <div class="googleMap">-->
+<!--                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3448.069212640062!2d-92.02259892284866!3d30.20657197484256!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86249d02fbde460b%3A0xaa454549d42d16a5!2sGirard%20Park!5e0!3m2!1sen!2sus!4v1697507624176!5m2!1sen!2sus"-->
+<!--                            allowfullscreen="" loading="lazy"-->
+<!--                            referrerpolicy="no-referrer-when-downgrade"></iframe>-->
+<!--                </div>-->
+<!--                <div class="googleMapTextContainer">-->
+<!--                    <div class="text">-->
+<!--                        Address:-->
+<!--                        <b>-->
+<!--                            <a href="https://www.google.com/maps/place/Girard+Park,+500+Girard+Park+Dr,+Lafayette,+LA+70503/@30.2069001,-92.0198322,18z/data=!4m6!3m5!1s0x86249d02fbde460b:0xaa454549d42d16a5!8m2!3d30.206572!4d-92.020024!16s%2Fg%2F1tlwf_sh"-->
+<!--                               target="_blank">-->
+<!--                                500 Girard Park Drive, Lafayette</a>-->
+<!--                        </b>-->
+<!--                    </div>-->
+<!--                    <div class="text"> Phone:-->
+<!--                        <b>-->
+<!--                            <a href="tel:337-291-8374">337-291-8374</a>-->
+<!--                        </b>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</footer>-->
+<footer class="bg-dark py-4 mt-auto" >
+    <div class="container px-5">
+        <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+            <div class="col-auto">
+                <div class="small m-0 text-white">Copyright &copy; ParkWeb 2023</div>
             </div>
-            <div class="text"> Phone:
-                <b>
-                    <a href="tel:337-291-8374">337-291-8374</a>
-                </b>
+            <div class="col-auto">
+                <div class="googleMap">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3448.069212640062!2d-92.02259892284866!3d30.20657197484256!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86249d02fbde460b%3A0xaa454549d42d16a5!2sGirard%20Park!5e0!3m2!1sen!2sus!4v1697507624176!5m2!1sen!2sus"
+                            allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div class="googleMapTextContainer">
+                    <div class="text">
+                        Address:
+                        <b>
+                            <a href="https://www.google.com/maps/place/Girard+Park,+500+Girard+Park+Dr,+Lafayette,+LA+70503/@30.2069001,-92.0198322,18z/data=!4m6!3m5!1s0x86249d02fbde460b:0xaa454549d42d16a5!8m2!3d30.206572!4d-92.020024!16s%2Fg%2F1tlwf_sh"
+                               target="_blank">
+                                500 Girard Park Drive, Lafayette</a>
+                        </b>
+                    </div>
+                    <div class="text"> Phone:
+                        <b>
+                            <a href="tel:337-291-8374">337-291-8374</a>
+                        </b>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
 </footer>
+<style>
+
+    .googleMap iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+
+    .navContainer .navLeft {
+        float: left;
+        width: 33.33vw;
+        text-align: left;
+    }
+
+    .navContainer .navCenter {
+        margin: 0 auto;
+        width: 33.33vw;
+        text-align: center;
+        color: #0A0203;
+    }
+
+    .googleMapContainer {
+        position: relative;
+        float: right;
+        height: 100%;
+        width: 30%;
+    }
+
+
+    .googleMap {
+        padding: 3vh 3vh 0 3vh;
+        height: 80%;
+    }
+
+    .navbar-custom {
+        border: 0;
+        background-color: #CE181E; /* Ragin Cajun Red */
+    }
+
+    .googleMapTextContainer {
+        position: relative;
+        float: none;
+        padding: 1vh 3vh 0 3vh;
+        color: #f2f2f2;
+        height: 20%;
+        font-family: 'Courier New', monospace;
+    }
+
+    .googleMapTextContainer a:hover {
+        color: #f2f2f2;
+    }
+
+    .googleMapTextContainer .text {
+        position: relative;
+        text-align: left;
+    }
+</style>
 
 <!--<div class="imgHeader">-->
 <!--</div>-->
 
-{% block content %}
-
-{% endblock %}
 
 </html>
