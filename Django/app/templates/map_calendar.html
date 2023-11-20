@@ -354,6 +354,48 @@ Available Objects {
             initialView: 'dayGridMonth',
             events: '/calendar/get_events/',
             height: 525,
+            dateClick: function (info) {
+                // Fetch events for the clicked day
+                $.get('/calendar/get_events/', { start: info.dateStr, end: info.dateStr }, function (events) {
+                    // Display event details in a popover
+                    if (events.length > 0) {
+                        var popoverContent = '';
+                        // Really ugly workarounds here, don't look
+                        events.forEach(function (event) {
+                            var formattedEventDate = moment(event.date).format('YYYY-MM-DD');
+                            if (formattedEventDate === info.dateStr) {
+                                popoverContent += '<div class="popover-event">';
+                                popoverContent += '<div class="popover-event__title"><strong>' + event.title + '</strong></div>';
+                                popoverContent += '<div class="popover-event__start-time">Start Time: ' + moment(event.date).format('HH:mm:ss') + '</div>';
+                                popoverContent += '<div class="popover-event__description">Description: ' + event.description + '</div>';
+                                popoverContent += '</div>';
+                            }
+                        });
+                        
+
+                        $(info.dayEl).popover({
+                            trigger: 'manual', // Set trigger to 'manual'
+                            title: 'Events on ' + info.dateStr,
+                            content: popoverContent,
+                            placement: 'auto',
+                            html: true,
+                        }).on('click', function (e) {
+                            // Toggle the popover on click
+                            $(this).popover('toggle');
+                            e.stopPropagation(); // Prevent the click event from propagating
+                        });
+
+                        // Dismiss popover on outside click
+                        $(document).on('click', function (e) {
+                            if ($(info.dayEl).has(e.target).length === 0) {
+                                $(info.dayEl).popover('hide');
+                            }
+                        });
+                        // Show the popover
+                        $(info.dayEl).popover('show');
+                    }
+                });
+            },
         });
         calendar.render();
 
