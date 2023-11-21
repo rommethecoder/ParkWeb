@@ -1,15 +1,15 @@
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from app.models import *
 from datetime import datetime
-import json
 from django import forms
 from django.forms import DateTimeInput
+from django.contrib.auth.decorators import user_passes_test
+
 
 
 def homePage(request):
@@ -141,9 +141,9 @@ def create_event_and_booking(request):
         )
 
         # Return success response
-        return redirect('map')
+        return redirect('map_calendar')
     else:
-        return redirect('map')
+        return redirect('map_calendar')
 
 
 def logoutUser(request):
@@ -171,7 +171,12 @@ class EventForm(forms.ModelForm):
 
 
 def get_events(request):
-    events = Event.objects.all()
+    # Filter events based on approved bookings
+    approved_bookings = Booking.objects.filter(status='Approved')
+    event_ids_with_approved_bookings = approved_bookings.values_list('event__id', flat=True)
+    
+    events = Event.objects.filter(id__in=event_ids_with_approved_bookings)
+    
     event_data = []
 
     for event in events:
@@ -188,3 +193,7 @@ def get_events(request):
         })
 
     return JsonResponse(event_data, safe=False)
+
+def booking_list(request):
+    bookings = Booking.objects.all()
+    return render(request, 'bookings_list.html', {'bookings': bookings})

@@ -48,12 +48,23 @@ class Event(models.Model):
 
 
 class Booking(models.Model):
+    PENDING = 'Pending'
+    APPROVED = 'Approved'
+    REJECTED = 'Rejected'
+
+    STATUS_CHOICES = [
+        (PENDING, 'Pending'),
+        (APPROVED, 'Approved'),
+        (REJECTED, 'Rejected'),
+    ]
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
     area = models.ForeignKey(Area, on_delete=models.CASCADE)
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
     attendance = models.IntegerField()
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default=PENDING)
 
     objects = models.Manager();
 
@@ -63,4 +74,3 @@ class Booking(models.Model):
     class Meta:
         managed = True
         db_table = 'Booking'
-

@@ -41,12 +41,12 @@ VALUES
     ('Picnic Day', '2024-04-25 12:00:00', 0, 'Recreation', 'A day for picnicking and outdoor fun.'); -- EventId = 7
 
 -- Insert data into Booking
-INSERT INTO Booking (user_id, event_id, area_id, start_time, end_time, attendance)
+INSERT INTO Booking (user_id, event_id, area_id, start_time, end_time, attendance, status)
 VALUES
-    (1, 1, 11, '2023-10-15 09:00:00', '2023-10-15 17:00:00', 125), -- Admin books Pavillion 3 for Tech Conference
-    (2, 2, 9, '2023-11-20 14:00:00', '2023-11-20 16:00:00', 27), -- User1 books Pavillion 1 for Team Building Workshop
-    (3, 3, 10, '2023-12-05 17:00:00', '2023-12-05 23:00:00', 320), -- User2 books Pavillion 2 for Music Festival
-    (1, 4, 3, '2024-01-20 10:00:00', '2024-01-20 18:00:00', 65), -- Admin books Basketball Court for Basketball Tournament
-    (2, 5, 5, '2024-02-10 11:00:00', '2024-02-10 14:00:00', 2), -- User1 books Tennis Wall for Open Play
-    (3, 6, 6, '2024-03-15 15:30:00', '2024-03-15 17:30:00', 12), -- User2 books Outdoor Volleyball Courts 2 for Tennis Clinic
-    (4, 7, 7, '2024-04-25 12:00:00', '2024-04-25 14:00:00', 10); -- User3 books Splash Pad for Picnic Day
+    (1, 1, 11, '2023-10-15 09:00:00', '2023-10-15 17:00:00', 125, 'Approved'), -- Admin books Pavillion 3 for Tech Conference
+    (2, 2, 9, '2023-11-20 14:00:00', '2023-11-20 16:00:00', 27, 'Approved'), -- User1 books Pavillion 1 for Team Building Workshop
+    (3, 3, 10, '2023-12-05 17:00:00', '2023-12-05 23:00:00', 320, 'Approved'), -- User2 books Pavillion 2 for Music Festival
+    (1, 4, 3, '2024-01-20 10:00:00', '2024-01-20 18:00:00', 65, 'Approved'), -- Admin books Basketball Court for Basketball Tournament
+    (2, 5, 5, '2024-02-10 11:00:00', '2024-02-10 14:00:00', 2, 'Approved'), -- User1 books Tennis Wall for Open Play
+    (3, 6, 6, '2024-03-15 15:30:00', '2024-03-15 17:30:00', 12, 'Approved'), -- User2 books Outdoor Volleyball Courts 2 for Tennis Clinic
+    (4, 7, 7, '2024-04-25 12:00:00', '2024-04-25 14:00:00', 10, 'Approved'); -- User3 books Splash Pad for Picnic Day
