@@ -23,9 +23,9 @@
     <link rel="stylesheet" type="text/css" href="{% static '/styles/index.css' %}">
     <link rel="icon" href="{% static '/images/favicons.ico' %}">
 </head>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" role="navigation">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark parkBackground" role="navigation">
     <div class="container px-5">
-        <a class="navbar-brand" href="/">{% block middleNav %}{% endblock %}</a>
+        <a class="navbar-brand parkText" href="/">{% block middleNav %}{% endblock %}</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
                 class="navbar-toggler-icon"></span></button>
@@ -33,7 +33,7 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item"><a class="nav-link" aria-current="page" href="/">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="/map_calendar/">Map/Calendar</a></li>
-                <li class="nav-item">
+                <li class="nav-item parkText">
                     {% if request.user.is_authenticated %}
                     <a class="nav-link" href="/logout/">
                         Logout

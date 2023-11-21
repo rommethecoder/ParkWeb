@@ -11,3 +11,11 @@
 
 /* START Map Template CSS */
 /* END Map Template CSS */
+
+
+.parkBackground {
+    background-color: #091E05 !important;
+}
+.parkText {
+    color: #FAF5E9 !important;
+}
