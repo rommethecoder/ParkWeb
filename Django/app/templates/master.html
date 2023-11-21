@@ -31,8 +31,8 @@
                 class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" aria-current="page" href="/">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="/map_calendar/">Map/Calendar</a></li>
+                <li class="nav-item"><a class="nav-link" aria-current="page" href="/" style="color: white !important;">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/map_calendar/" style="color: white !important;">Map/Calendar</a></li>
                 <li class="nav-item parkText">
                     {% if request.user.is_authenticated %}
                     <a class="nav-link" href="/logout/">
@@ -42,12 +42,12 @@
                         {% endif %}
                     </a>
                     {% else %}
-                    <a class="nav-link" href="/register/"> Login/Register </a>
+                    <a class="nav-link" href="/register/" style="color: white !important;"> Login/Register </a>
                     {% endif %}
                 </li>
                 <li class="nav-item">
                     {% if user.is_staff %}
-                    <a class="nav-link" href="/admin/" target="_blank"> Admin Panel </a>
+                    <a class="nav-link" href="/admin/" target="_blank" style="color: white !important;"> Admin Panel </a>
                     {% endif %}
                 </li>
             </ul>
