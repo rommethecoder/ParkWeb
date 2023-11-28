@@ -141,6 +141,7 @@ Available Objects {
                                             <tbody>
                                             {% if request.user.is_authenticated %}
                                             {% for booking in bookings %}
+                                            {% if booking.status == 'Approved' %}
                                             <tr>
                                                 <td>{{ booking.user.first_name }} {{ booking.user.last_name }}</td>
                                                 <td>{{ booking.event.name }}</td>
@@ -156,14 +157,15 @@ Available Objects {
                                                 <td>{{ booking.end_time }}</td>
                                                 <td>{{ booking.attendance }}</td>
                                             </tr>
+                                            {% endif %}
                                             {% empty %}
                                             <tr>
-                                                <td colspan="5">No bookings available.</td>
+                                                <td colspan="5">No approved bookings available.</td>
                                             </tr>
                                             {% endfor %}
                                             {% else %}
                                             {% for booking in bookings %}
-                                            {% if booking.event.is_public %}
+                                            {% if booking.status == 'Approved' and booking.event.is_public %}
                                             <tr>
                                                 <td>{{ booking.user.first_name }} {{ booking.user.last_name }}</td>
                                                 <td>{{ booking.event.name }}</td>

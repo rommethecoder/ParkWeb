@@ -12,6 +12,7 @@ urlpatterns = [
     path("register/", views.registerPage, name="register"),
     path("logout/", views.logoutUser, name="logout"),
     path('calendar/get_events/', views.get_events, name='get_events'),
+    path('create_event_and_booking/', views.create_event_and_booking, name='create_event_and_booking'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
