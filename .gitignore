@@ -139,3 +139,4 @@ GitHub.sublime-settings
 .idea/*
 .idea/dataSources.xml
 .idea/sqldialects.xml
+.idea/misc.xml
