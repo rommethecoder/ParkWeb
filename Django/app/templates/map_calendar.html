@@ -11,6 +11,7 @@ Available Objects {
     "bookings",
     "bookableAreas",
     "current_date",
+    "eventCategories",
 }-->
 
 
@@ -225,14 +226,19 @@ Available Objects {
                                         <div class="form-group">
                                             <label for="isPublic">Is this event public?</label>
                                             <select class="form-control" id="isPublic" name="is_public" required>
+                                                <option value="none" selected disabled hidden>Please select an option...</option>
                                                 <option value="true">Yes</option>
                                                 <option value="false">No</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="eventCategory">Event Category:</label>
-                                            <input type="text" class="form-control" id="eventCategory"
-                                                   name="event_category" required>
+                                            <select type="text" class="form-control" id="eventCategory" name="event_category" required>
+                                                <option value="none" selected disabled hidden>Please select an option...</option>
+                                                {% for category in eventCategories %}
+                                                <option>{{ category }}</option>
+                                                {% endfor %}
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="eventDescription">Event Description:</label>
@@ -242,8 +248,7 @@ Available Objects {
                                         <!-- Booking Information -->
                                         <div class="form-group">
                                             <label for="attendance">Estimated Attendance:</label>
-                                            <input type="number" class="form-control" id="attendance" name="attendance"
-                                                   required>
+                                            <input type="number" class="form-control" id="attendance" name="attendance" required>
                                         </div>
                                         <!-- Start Time -->
                                         <div class="form-group">
@@ -261,12 +266,13 @@ Available Objects {
                                         <div class="form-group">
                                             <label for="areaId">Available Areas:</label>
                                             <select class="form-control" id="areaId" name="area_id" required>
+                                                <option value="none" selected disabled hidden>Please select an option...</option>
                                                 {% for area in bookableAreas %}
                                                 <option value="{{ area.id }}">{{ area.name }}</option>
                                                 {% endfor %}
                                             </select>
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Submit Booking</button>
+                                        <button type="submit" class="btn btn-primary">Request Booking</button>
                                     </form>
                                 </div>
                             </div>
@@ -288,7 +294,6 @@ Available Objects {
 
 <!-- Zoom In/Out Functionality -->
 <script>
-
     $(document).ready(function () {
 
         const mapFrame = $("#map-frame")[0];
@@ -315,28 +320,30 @@ Available Objects {
 
 <!-- JavaScript to update time options based on event date -->
 <script>
-    // JavaScript to validate start and end times (optional)
-    const startTimeInput = document.getElementById('startTime');
-    const endTimeInput = document.getElementById('endTime');
+    $(document).ready(function () {
+        // JavaScript to validate start and end times (optional)
+        const startTimeInput = document.getElementById('startTime');
+        const endTimeInput = document.getElementById('endTime');
 
-    // Event listener for form submission
-    document.getElementById('bookingForm').addEventListener('submit', function (event) {
-        // Get selected event date, start time, and end time
-        const selectedDate = document.getElementById('eventDate').value;
-        const startTime = startTimeInput.value;
-        const endTime = endTimeInput.value;
+        // Event listener for form submission
+        document.getElementById('bookingForm').addEventListener('submit', function (event) {
+            // Get selected event date, start time, and end time
+            const selectedDate = document.getElementById('eventDate').value;
+            const startTime = startTimeInput.value;
+            const endTime = endTimeInput.value;
 
-        // Validate start time and end time (if needed)
-        if (selectedDate && startTime && endTime) {
-            const selectedDateTime = new Date(`${selectedDate}T${startTime}`);
-            const endDateTime = new Date(`${selectedDate}T${endTime}`);
+            // Validate start time and end time (if needed)
+            if (selectedDate && startTime && endTime) {
+                const selectedDateTime = new Date(`${selectedDate}T${startTime}`);
+                const endDateTime = new Date(`${selectedDate}T${endTime}`);
 
-            if (selectedDateTime >= endDateTime) {
-                event.preventDefault();
-                alert('End time must be later than start time.');
-                return false;
+                if (selectedDateTime >= endDateTime) {
+                    event.preventDefault();
+                    alert('End time must be later than start time.');
+                    return false;
+                }
             }
-        }
+        });
     });
 </script>
 
@@ -353,7 +360,7 @@ Available Objects {
             height: 525,
             dateClick: function (info) {
                 // Fetch events for the clicked day
-                $.get('/calendar/get_events/', { start: info.dateStr, end: info.dateStr }, function (events) {
+                $.get('/calendar/get_events/', function (events) {
                     // Display event details in a popover
                     if (events.length > 0) {
                         var popoverContent = '';
@@ -363,8 +370,11 @@ Available Objects {
                             if (formattedEventDate === info.dateStr) {
                                 popoverContent += '<div class="popover-event">';
                                 popoverContent += '<div class="popover-event__title"><strong>' + event.title + '</strong></div>';
-                                popoverContent += '<div class="popover-event__start-time">Start Time: ' + moment(event.date).format('HH:mm:ss') + '</div>';
-                                popoverContent += '<div class="popover-event__description">Description: ' + event.description + '</div>';
+                                popoverContent += '<div class="popover-event__start-time">Start Time: ' + moment(event.startTime).format('h:mm a') + '</div>';
+                                popoverContent += '<div class="popover-event__end-time">End Time: ' + moment(event.endTime).format('h:mm a') + '</div>';
+                                if (event.is_public){
+                                    popoverContent += '<div class="popover-event__description">Description: ' + event.description + '</div>';
+                                }
                                 popoverContent += '</div>';
                             }
                         });
@@ -376,11 +386,7 @@ Available Objects {
                             content: popoverContent,
                             placement: 'auto',
                             html: true,
-                        }).on('click', function (e) {
-                            // Toggle the popover on click
-                            $(this).popover('toggle');
-                            e.stopPropagation(); // Prevent the click event from propagating
-                        });
+                        })
 
                         // Dismiss popover on outside click
                         $(document).on('click', function (e) {
@@ -396,23 +402,6 @@ Available Objects {
         });
         calendar.render();
 
-        $('#event-form').on('submit', function (event) {
-            event.preventDefault();
-            var formData = $(this).serialize();
-
-            $.post('/add_event/', formData, function (response) {
-                if (response.status === 'success') {
-                    // Add the new event to FullCalendar
-                    calendar.addEvent(response.event);
-
-                    // Clear the form
-                    $('#event-form')[0].reset();
-                } else {
-                    // Handle form validation errors
-                    // Display the errors to the user, if needed
-                }
-            });
-        });
     });
 </script>
 
@@ -436,14 +425,14 @@ Available Objects {
     }
 
     .firstHalfContainer {
-        height: 100vh;
+        height: 70vh;
         width: 100%;
         display: inline-flex;
         margin: 0;
         padding: 0;
     }
     .secondHalfContainer {
-            height: 100vh;
+            height: 60vh;
             width: 100%;
             display: inline-flex;
             margin: 0;

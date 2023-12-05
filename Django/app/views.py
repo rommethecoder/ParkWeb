@@ -11,7 +11,6 @@ from django.forms import DateTimeInput
 from django.contrib.auth.decorators import user_passes_test
 
 
-
 def homePage(request):
     context = {}
     return render(request, "home.html", context)
@@ -37,16 +36,13 @@ def map_calendarPage(request):
         """
     )
 
-    # # For Map Items
-    # eventsForMap = Event.objects.all()
-    # event_data = []
-    # for event in eventsForMap:
-    #     event_data.append({
-    #         'title': event.name,  # Use the correct field name from the model
-    #         'start': event.date.isoformat(),
-    #         'end': event.date.isoformat(),  # Assuming you want the end time to be the same as the start time
-    #         'description': event.description,
-    #     })
+    categories = [
+        "Tech",
+        "Music",
+        "Sports",
+        "Recreation",
+        "Super Mega Fun",
+    ]
 
     context = {
         "areas": area,
@@ -54,7 +50,7 @@ def map_calendarPage(request):
         "bookings": booking,
         "bookableAreas": bookableArea,
         "current_date": datetime.now(),
-        # 'events_json': json.dumps(event_data)
+        "eventCategories": categories,
     }
 
     return render(request, "map_calendar.html", context)
@@ -173,26 +169,26 @@ class EventForm(forms.ModelForm):
 def get_events(request):
     # Filter events based on approved bookings
     approved_bookings = Booking.objects.filter(status='Approved')
-    event_ids_with_approved_bookings = approved_bookings.values_list('event__id', flat=True)
-    
-    events = Event.objects.filter(id__in=event_ids_with_approved_bookings)
-    
+
     event_data = []
 
-    for event in events:
-        if event.is_public:
-            event_title = event.name
+    for booking in approved_bookings:
+        if booking.event.is_public:
+            event_title = booking.event.name
         else:
             event_title = "Private Event"
         event_data.append({
-            'id': event.id,
+            'id': booking.event.id,
             'title': event_title,
-            'date': event.date,
-            'category': event.category,
-            'description': event.description,
+            'date': booking.event.date,
+            'startTime': booking.start_time,
+            'endTime': booking.end_time,
+            'category': booking.event.category,
+            'description': booking.event.description,
         })
 
     return JsonResponse(event_data, safe=False)
+
 
 def booking_list(request):
     bookings = Booking.objects.all()
